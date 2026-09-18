@@ -227,29 +227,36 @@
                     Trending Now
                 </h3>
                 <ul class="space-y-5">
-                    <li onclick="openArticle('chawe')" class="flex gap-4 group cursor-pointer">
+                    <li onclick="openArticle('classic')" class="flex gap-4 group cursor-pointer">
                         <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">1</span>
+                        <div>
+                            <h4 class="font-bold text-sm text-gray-900 dark:text-gray-100 group-hover:text-brand-red transition leading-tight">Terraria Glazer 'Average Classic' Loads Unregistered Mod, Sets Server Rooms on Fire</h4>
+                            <p class="text-xs text-gray-500 mt-1">Gaming / 12m ago</p>
+                        </div>
+                    </li>
+                    <li onclick="openArticle('chawe')" class="flex gap-4 group cursor-pointer">
+                        <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">2</span>
                         <div>
                             <h4 class="font-bold text-sm text-gray-900 dark:text-gray-100 group-hover:text-brand-red transition leading-tight">Streamer 'chawe42' Crashes Donut SMP Servers After Entire Playerbase Teleports to Him</h4>
                             <p class="text-xs text-gray-500 mt-1">Gaming / 45m ago</p>
                         </div>
                     </li>
                     <li class="flex gap-4 group cursor-pointer">
-                        <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">2</span>
+                        <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">3</span>
                         <div>
                             <h4 class="font-bold text-sm text-gray-900 dark:text-gray-100 group-hover:text-brand-red transition leading-tight">Nvidia CEO Jensen Huang Personally Delivers H100 GPU to Rufus Brown's Apartment</h4>
                             <p class="text-xs text-gray-500 mt-1">Hardware / 4h ago</p>
                         </div>
                     </li>
                     <li class="flex gap-4 group cursor-pointer">
-                        <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">3</span>
+                        <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">4</span>
                         <div>
                             <h4 class="font-bold text-sm text-gray-900 dark:text-gray-100 group-hover:text-brand-red transition leading-tight">OpenAI Scrambles to Find Their Own 'Rufus' to Boost Quarterly Earnings</h4>
                             <p class="text-xs text-gray-500 mt-1">Enterprise / 6h ago</p>
                         </div>
                     </li>
                     <li class="flex gap-4 group cursor-pointer">
-                        <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">4</span>
+                        <span class="text-3xl font-serif font-bold text-gray-200 dark:text-gray-700 group-hover:text-brand-red transition">5</span>
                         <div>
                             <h4 class="font-bold text-sm text-gray-900 dark:text-gray-100 group-hover:text-brand-red transition leading-tight">San Francisco Power Grid Experiences Micro-Blackouts Traced to Single Terminal</h4>
                             <p class="text-xs text-gray-500 mt-1">Infrastructure / 12h ago</p>
@@ -611,12 +618,108 @@
                     <span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition">Livestreaming</span>
                     <span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition">Server Infrastructure</span>
                 `
+            },
+            classic: {
+                category: 'Gaming / Server Fire',
+                cardCategory: 'Gaming',
+                title: "World's Biggest Terraria Glazer 'Average Classic' Loads Unregistered Mod, Sets Terraria Server Rooms on Fire",
+                subtitle: "A single unlisted mod file, loaded by the game's most devoted defender, pushed dedicated server hardware past its thermal limits and triggered a literal fire. He maintains the game is still perfect.",
+                excerpt: "One unregistered mod, one extremely loyal fan, and several racks of servers that are now mostly smoke.",
+                author: 'By Marcus Oyelaran',
+                meta: 'September 18, 2026 • 5 min read',
+                avatarSrc: 'https://placehold.co/100x100/7c2d12/ffffff?text=AC',
+                avatarAlt: 'Average Classic',
+                cardIcon: 'fa-solid fa-fire',
+                cardGradient: 'from-orange-950 via-[#2e1508] to-black',
+                heroHTML: `
+                    <div class="w-full h-64 md:h-[400px] bg-gradient-to-br from-orange-950 via-[#2e1508] to-black rounded-lg relative overflow-hidden flex items-center justify-center border border-gray-800">
+                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#f97316 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        <div class="z-10 text-center">
+                            <i class="fa-solid fa-fire text-6xl text-orange-500/60 mb-4 animate-pulse"></i>
+                            <h3 class="text-white font-mono font-bold text-2xl tracking-widest drop-shadow-[0_0_10px_rgba(249,115,22,0.8)]">NODE: TERRARIA_RACK_07</h3>
+                            <p class="text-orange-300 font-mono text-sm mt-2">STATUS: ON FIRE | CAUSE: Average Classic</p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 bg-black/60 backdrop-blur px-3 py-1 text-xs font-mono text-red-400 border border-red-900 rounded">
+                            <i class="fa-solid fa-circle text-[8px] animate-pulse mr-1"></i> SUPPRESSION ACTIVE
+                        </div>
+                    </div>
+                    <figcaption class="text-xs text-gray-500 mt-2 font-sans">
+                        The last thermal reading from Rack 07 before the sensor itself melted. (Graphic: The Silicon Wire)
+                    </figcaption>
+                `,
+                bodyHTML: `
+                    <p class="drop-cap">
+                        Firefighters were called to a Terraria server facility early Friday morning after a player known online as Average Classic — widely regarded as the single most enthusiastic Terraria glazer on Earth — loaded an unregistered mod that drove an entire row of server racks past their thermal limits and into open flame.
+                    </p>
+                    <p>
+                        Average Classic, who has described Terraria as "the only game" and once posted a 9,000-word forum thread arguing that the Zenith is "historically underrated," reportedly obtained the mod from an unlisted file share. It was not on any mod browser, carried no author name, and had a file size one engineer described as "frankly rude."
+                    </p>
+
+                    <blockquote class="border-l-4 border-brand-red pl-6 py-2 my-8 italic text-2xl font-serif text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-800/50 rounded-r-lg">
+                        "The mod spawned every boss at once, then spawned every boss again for each boss. We watched the CPU temperature graph turn into a vertical line. Then the graph stopped, because the thing drawing the graph was on fire."
+                        <footer class="text-sm font-sans text-gray-500 dark:text-gray-400 not-italic mt-3 font-bold">— Server technician, speaking from the parking lot</footer>
+                    </blockquote>
+
+                    <p>
+                        According to logs recovered before the blaze, the mod registered itself under no ID at all, which let it bypass every safety check that depends on knowing a mod exists. Within ninety seconds, entity counts exceeded what staff believed the engine could represent as a number.
+                    </p>
+
+                    <div class="my-10 bg-slate-900 rounded-xl border border-slate-700 shadow-2xl overflow-hidden font-sans">
+                        <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500 cursor-blink"></div>
+                                <h4 class="text-white font-bold text-sm tracking-widest uppercase">Live Server Room Fire Tracker</h4>
+                            </div>
+                            <span class="text-[10px] text-slate-400 font-mono">TELEMETRY_LINK_SMOLDERING</span>
+                        </div>
+                        <div class="p-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div class="text-center sm:text-left">
+                                <p class="text-slate-400 text-xs font-bold uppercase mb-1">Rack Temperature</p>
+                                <div id="live-temp" class="text-3xl font-mono font-bold text-orange-400 tabular-nums">412.0°C</div>
+                                <p class="text-[10px] text-orange-500/70 mt-1">↑ Hotter than the Underworld</p>
+                            </div>
+                            <div class="text-center sm:text-left border-t sm:border-t-0 sm:border-l border-slate-700 pt-4 sm:pt-0 sm:pl-6">
+                                <p class="text-slate-400 text-xs font-bold uppercase mb-1">Bosses Spawned</p>
+                                <div id="live-bosses" class="text-3xl font-mono font-bold text-red-400 tabular-nums">1,204,880</div>
+                                <p class="text-[10px] text-red-500/70 mt-1">Mostly Moon Lords</p>
+                            </div>
+                            <div class="text-center sm:text-left border-t sm:border-t-0 sm:border-l border-slate-700 pt-4 sm:pt-0 sm:pl-6">
+                                <p class="text-slate-400 text-xs font-bold uppercase mb-1">Racks On Fire</p>
+                                <div id="live-racks" class="text-3xl font-mono font-bold text-yellow-400 tabular-nums">7 / 22</div>
+                                <p class="text-[10px] text-yellow-500/70 mt-1">Spreading like the Corruption</p>
+                            </div>
+                        </div>
+                        <div class="bg-black/50 px-4 py-2 font-mono text-[10px] text-gray-500">
+                            <span class="text-green-500">></span> SYS_LOG: <span id="terminal-log-classic">Unknown mod "????.tmod" requesting 64 GB of RAM...</span>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-sans font-bold text-gray-900 dark:text-white mt-8 mb-4">"Still a 10/10"</h3>
+                    <p>
+                        No injuries were reported. The building's suppression system contained the fire to a single hall, though staff confirmed that several machines "will not be journeying to the end of anything."
+                    </p>
+                    <p>
+                        Average Classic, for his part, has not wavered. In a statement posted while the facility was still being ventilated, he called the incident "proof of how deep the game's systems go" and noted that no other sandbox title has ever been powerful enough to combust its own infrastructure. "Minecraft could never," he added.
+                    </p>
+                    <p>
+                        Asked whether he would load an unregistered mod again, he said he already had. "It's a different one. This one only adds a fishing rod. I think."
+                    </p>
+                    <p>
+                        Multiplayer services are expected to return once replacement hardware arrives and someone works out how to delete a mod that does not, technically, exist.
+                    </p>
+                `,
+                tagsHTML: `
+                    <span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition">Gaming</span>
+                    <span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition">Terraria</span>
+                    <span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition">Modding</span>
+                    <span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold uppercase px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer transition">Server Infrastructure</span>
+                `
             }
         };
 
         // Controls the order (and therefore which cards appear first) on the home screen.
         // To add a new article: add it to `articles` above, then push its id here.
-        const articleOrder = ['chawe', 'rufus'];
+        const articleOrder = ['classic', 'chawe', 'rufus'];
 
         // 5a. Home Screen — renders one card per article in the registry
         function renderHomeCards() {
@@ -702,6 +805,18 @@
             "Attempting emergency world save before shard 9 crash..."
         ];
 
+        let baseTemp = 412.0;
+        let baseBosses = 1204880;
+        let baseRacks = 7;
+
+        const classicLogMessages = [
+            'Unknown mod "????.tmod" requesting 64 GB of RAM...',
+            "Fan speed at 100%. Fans have asked to be excused...",
+            "Spawning Moon Lord #880,412...",
+            "Thermal paste reclassified as a liquid...",
+            "Average Classic has rated this experience 10/10..."
+        ];
+
         function startLiveTracker() {
             setInterval(() => {
                 if (currentStory === 'rufus') {
@@ -744,6 +859,21 @@
 
                     if (Math.random() > 0.9) {
                         document.getElementById('terminal-log-chawe').innerText = chaweLogMessages[Math.floor(Math.random() * chaweLogMessages.length)];
+                    }
+                } else if (currentStory === 'classic') {
+                    const tempEl = document.getElementById('live-temp');
+                    if (!tempEl) return;
+
+                    baseTemp += (Math.random() * 0.8) - 0.2;
+                    baseBosses += Math.floor(Math.random() * 900) + 100;
+                    if (Math.random() > 0.97 && baseRacks < 22) baseRacks += 1;
+
+                    tempEl.innerText = baseTemp.toFixed(1) + '°C';
+                    document.getElementById('live-bosses').innerText = baseBosses.toLocaleString();
+                    document.getElementById('live-racks').innerText = `${baseRacks} / 22`;
+
+                    if (Math.random() > 0.9) {
+                        document.getElementById('terminal-log-classic').innerText = classicLogMessages[Math.floor(Math.random() * classicLogMessages.length)];
                     }
                 }
             }, 100); // Super fast 100ms updates to look "relentless"
