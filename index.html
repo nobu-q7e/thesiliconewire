@@ -208,45 +208,13 @@
                 </div><!-- /#article-dynamic-content -->
 
                 <section class="mt-12 pt-8 border-t-4 border-black dark:border-white">
-                    <h3 class="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-6">Reader Comments (<span id="comment-count">3</span>)</h3>
-                    
-                    <!-- Comment Form -->
-                    <form id="comment-form" class="bg-gray-50 dark:bg-gray-800/30 p-6 rounded-lg mb-8 border border-gray-200 dark:border-gray-700">
-                        <h4 class="font-sans font-bold text-sm mb-4 text-gray-900 dark:text-white uppercase tracking-wider">Join the Discussion</h4>
-                        <div class="mb-4">
-                            <input type="text" id="comment-name" required placeholder="Your Name" class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded px-4 py-2 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red text-gray-900 dark:text-white transition">
-                        </div>
-                        <div class="mb-4">
-                            <textarea id="comment-body" required rows="3" placeholder="What are your thoughts on this story?" class="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded px-4 py-2 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red text-gray-900 dark:text-white transition"></textarea>
-                        </div>
-                        <button type="submit" class="bg-brand-red hover:bg-red-700 text-white font-bold py-2 px-6 rounded text-sm transition">Post Comment</button>
-                    </form>
-
-                    <!-- Dynamic Comment List -->
-                    <div id="comment-list" class="space-y-6">
-                        <!-- Pre-existing comments -->
-                        <div class="border-b border-gray-200 dark:border-gray-800 pb-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <h5 class="font-bold text-sm text-gray-900 dark:text-white">TechVC_Guy</h5>
-                                <span class="text-xs text-gray-500">2 hours ago</span>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 font-serif text-sm">This is why I only invest in compute hardware companies. No matter who wins the AI war, Rufus is still buying GPUs to run his local orchestration scripts.</p>
-                        </div>
-                        <div class="border-b border-gray-200 dark:border-gray-800 pb-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <h5 class="font-bold text-sm text-gray-900 dark:text-white">Sarah_Codes</h5>
-                                <span class="text-xs text-gray-500">4 hours ago</span>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 font-serif text-sm">Honestly, I get it. Once you start automating your Python scripts with Claude, you can't stop. I'm probably 0.001% of their revenue myself.</p>
-                        </div>
-                        <div class="border-b border-gray-200 dark:border-gray-800 pb-6">
-                            <div class="flex items-center justify-between mb-2">
-                                <h5 class="font-bold text-sm text-gray-900 dark:text-white">SysAdminSteve</h5>
-                                <span class="text-xs text-gray-500">5 hours ago</span>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 font-serif text-sm">Prayers up for the on-call engineers managing the Rufus cluster today.</p>
-                        </div>
-                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-6">Reader Comments</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-6 font-sans">
+                        Comments are powered by <a href="https://giscus.app" target="_blank" rel="noopener" class="underline hover:text-brand-red">giscus</a> and stored as GitHub Discussions, so they're the same for every reader on every device. You'll need a free GitHub account to post.
+                    </p>
+                    <!-- giscus mounts its comment widget (iframe) into this container. -->
+                    <!-- It is (re)loaded per-article by loadGiscus() in the script below. -->
+                    <div id="giscus-comments"></div>
                 </section>
             </div><!-- /#article-view -->
         </article>
@@ -380,6 +348,7 @@
                 icon.classList.add('fa-sun');
                 showToast("Switched to Dark Mode");
             }
+            syncGiscusTheme();
         }
 
         // Initialize theme icon based on current class
@@ -698,6 +667,7 @@
             document.getElementById('article-view').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             showToast(`Now reading: ${articles[id].cardCategory}`, 'info');
+            loadGiscus(id);
         }
 
         function showHome() {
@@ -790,50 +760,77 @@
             showToast("Successfully subscribed to The Silicon Wire Brief!");
         });
 
-        // 7. Dynamic Comments Posting
-        let commentCount = 3;
-        document.getElementById('comment-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const nameInput = document.getElementById('comment-name');
-            const bodyInput = document.getElementById('comment-body');
-            
-            const name = nameInput.value.trim();
-            const text = bodyInput.value.trim();
-            
-            if (name && text) {
-                const list = document.getElementById('comment-list');
-                
-                // Construct new comment HTML
-                const newComment = document.createElement('div');
-                newComment.className = "border-b border-gray-200 dark:border-gray-800 pb-6 opacity-0 transition-opacity duration-500";
-                newComment.innerHTML = `
-                    <div class="flex items-center justify-between mb-2">
-                        <h5 class="font-bold text-sm text-gray-900 dark:text-white">${name}</h5>
-                        <span class="text-xs text-brand-red font-bold animate-pulse">Just now</span>
-                    </div>
-                    <p class="text-gray-700 dark:text-gray-300 font-serif text-sm">${text}</p>
-                `;
-                
-                // Prepend to list
-                list.insertBefore(newComment, list.firstChild);
-                
-                // Fade in effect
-                setTimeout(() => {
-                    newComment.classList.remove('opacity-0');
-                    newComment.classList.add('opacity-100');
-                }, 50);
+        // 7. Giscus Comments (GitHub Discussions-backed, works across devices)
+        //
+        // SETUP REQUIRED before this works:
+        //   1. Push this site to a PUBLIC GitHub repo (or a private one on GitHub Pro/Team/Enterprise).
+        //   2. In that repo: Settings -> General -> Features -> enable "Discussions".
+        //   3. Install the giscus app on the repo: https://github.com/apps/giscus
+        //   4. Go to https://giscus.app, enter your repo, and it will generate the exact
+        //      data-repo / data-repo-id / data-category / data-category-id values for you.
+        //   5. Paste those four values into GISCUS_CONFIG below, replacing the placeholders.
+        //
+        // Each article gets its OWN separate comment thread (via data-term), created
+        // automatically the first time someone comments on that article.
+        const GISCUS_CONFIG = {
+            repo: 'YOUR_GITHUB_USERNAME/YOUR_REPO_NAME',       // e.g. 'jsmith/the-silicon-wire'
+            repoId: 'YOUR_REPO_ID',                             // from giscus.app
+            category: 'General',                                // the Discussions category to use
+            categoryId: 'YOUR_CATEGORY_ID',                     // from giscus.app
+            mapping: 'specific'                                 // ties each article to its own thread
+        };
 
-                // Update counter
-                commentCount++;
-                document.getElementById('comment-count').innerText = commentCount;
-                
-                // Reset form and notify
-                this.reset();
-                showToast("Your comment has been posted.");
+        function currentGiscusTheme() {
+            return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
+
+        // (Re)mounts the giscus widget for whichever article is currently open,
+        // giving each article its own discussion thread via data-term.
+        function loadGiscus(articleId) {
+            const container = document.getElementById('giscus-comments');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (GISCUS_CONFIG.repo === 'YOUR_GITHUB_USERNAME/YOUR_REPO_NAME') {
+                // Config hasn't been filled in yet — show a friendly placeholder instead of a broken widget.
+                container.innerHTML = `
+                    <div class="bg-gray-50 dark:bg-gray-800/40 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg p-6 text-sm text-gray-500 dark:text-gray-400 font-sans">
+                        <i class="fa-solid fa-comments mr-2"></i>
+                        Comments aren't connected yet. Fill in <code>GISCUS_CONFIG</code> at the top of the "Giscus Comments" section
+                        of the script (get your values from <a href="https://giscus.app" target="_blank" rel="noopener" class="underline hover:text-brand-red">giscus.app</a>) to turn this on.
+                    </div>
+                `;
+                return;
             }
-        });
-        
+
+            const script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', GISCUS_CONFIG.repo);
+            script.setAttribute('data-repo-id', GISCUS_CONFIG.repoId);
+            script.setAttribute('data-category', GISCUS_CONFIG.category);
+            script.setAttribute('data-category-id', GISCUS_CONFIG.categoryId);
+            script.setAttribute('data-mapping', GISCUS_CONFIG.mapping);
+            script.setAttribute('data-term', articleId); // separate thread per article
+            script.setAttribute('data-strict', '0');
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'top');
+            script.setAttribute('data-theme', currentGiscusTheme());
+            script.setAttribute('data-lang', 'en');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+            container.appendChild(script);
+        }
+
+        // Tells an already-mounted giscus iframe to switch theme (used by toggleTheme()).
+        function syncGiscusTheme() {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage(
+                { giscus: { setConfig: { theme: currentGiscusTheme() } } },
+                'https://giscus.app'
+            );
+        }
     </script>
 </body>
 </html>
