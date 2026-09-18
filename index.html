@@ -773,10 +773,10 @@
         // Each article gets its OWN separate comment thread (via data-term), created
         // automatically the first time someone comments on that article.
         const GISCUS_CONFIG = {
-            repo: 'YOUR_GITHUB_USERNAME/YOUR_REPO_NAME',       // e.g. 'jsmith/the-silicon-wire'
-            repoId: 'YOUR_REPO_ID',                             // from giscus.app
-            category: 'General',                                // the Discussions category to use
-            categoryId: 'YOUR_CATEGORY_ID',                     // from giscus.app
+            repo: 'nobu-q7e/thesiliconewire',
+            repoId: 'R_kgDOUgDbFQ',
+            category: 'General',
+            categoryId: 'DIC_kwDOUgDbFc4DF4QA',
             mapping: 'specific'                                 // ties each article to its own thread
         };
 
@@ -814,7 +814,7 @@
             script.setAttribute('data-strict', '0');
             script.setAttribute('data-reactions-enabled', '1');
             script.setAttribute('data-emit-metadata', '0');
-            script.setAttribute('data-input-position', 'top');
+            script.setAttribute('data-input-position', 'bottom');
             script.setAttribute('data-theme', currentGiscusTheme());
             script.setAttribute('data-lang', 'en');
             script.setAttribute('crossorigin', 'anonymous');
